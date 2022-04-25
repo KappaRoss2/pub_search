@@ -6,11 +6,27 @@
 {% block header %}
 <div class="header_container">
     <ul class="header_container_ul">
-        <li><a href="" class="header_container_ul_li">Главная</a></li>
+        <li><a href="/home" class="header_container_ul_li">Главная</a></li>
     </ul>
-    <div class="header_container_button">
-        <button type="button" class="header_container_button_click">Войти</button>
-        <button type="button" class="header_container_button_click">Регистрация</button>
-    </div>
+    {%if user.is_authenticated %}
+        <div class="header_container_button">
+            <p>{{ user.username }}</p>
+            <a href="{% url 'logout' %}">Выход</a>
+        </div>
+    {% else %}
+         <div class="header_container_button">
+            <a href ="{% url 'login' %}" class="header_container_button_click">Войти</a>
+            <a href ="" class="header_container_button_click">Регистрация</a>
+        </div>
+    {% endif %}
 </div>
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="search-box">
+        <input type="text" class="search-txt" placeholder="Поиск">
+        <a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a>
+    </div>
+</main>
 {% endblock %}
