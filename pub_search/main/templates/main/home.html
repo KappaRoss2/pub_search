@@ -1,7 +1,6 @@
 {% extends 'main/base.html' %}
-
-{% block title %}Главная страница{% endblock %}
-
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block header %}
 <div class="header_container">
@@ -24,9 +23,38 @@
 
 {% block main %}
 <main>
-    <div class="search-box">
-        <input type="text" class="search-txt" placeholder="Поиск">
-        <a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a>
+    <form action="/home/parser" method="POST">
+        {% csrf_token %}
+        <div class="search-box">
+            <input type="text" name="article" class="search-txt" placeholder="Поиск">
+            <button type="submit" class="search-btn">Найти</button>
+        </div>
+    </form>
+    <div id="result">
+            {% for result in results %}
+                {% for el in result %}
+                    <div class="results">
+                        <p>Статья: <a href="{{el.1}}">{{el.0}}</a></p>
+                        <p>Доступ: {{el.2}}</p>
+                        <p>Авторы: {{el.3}}</p>
+                        <button v-on:click="add(['{{el.0}}','{{el.1}}','{{el.2}}','{{el.3}}'])">Добавить</button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
     </div>
 </main>
+<script>
+new Vue({
+  el: '#result',
+  methods: {
+    add: function (elements) {
+      if (elements) {
+        alert(elements)
+      }
+    }
+  }
+})
+</script>
 {% endblock %}
+
+
