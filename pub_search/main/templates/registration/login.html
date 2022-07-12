@@ -10,15 +10,20 @@
 {% endblock %}
 {% block main %}
 <main>
-    <form method="post">
-      {% csrf_token %}
-      <table>
-        {{ form.as_p }}
-        <tr>
-          <td>&nbsp;</td>
-          <td><input type="submit" value="Submit"></td>
-        </tr>
-      </table>
-    </form>
+    <div class="wrap-login100">
+        <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post">
+            <span class="login100-form-title">Sign In</span>
+            {% for el in form %}
+         <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+             {% csrf_token %}
+<!--             <input class="form-input" id = {{el.id_for_label}} placeholder="{{ el.html_name.title }}">-->
+             {{el}}
+        </div>
+            {% endfor %}
+        <div class="container-login100-form-btn">
+            <button type="submit" class="login100-form-btn">Sign in</button>
+        </div>
+        </form>
+    </div>
 </main>
 {% endblock %}

@@ -42,6 +42,7 @@ class elsiever(ip.parser):
             Reference = reference,
             Access = access,
             Authors = authors.replace("'", ""),
+            Source="Elsiever",
         ))
 
         return self.result

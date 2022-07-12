@@ -8,14 +8,14 @@
         <li><a href="/home" class="header_container_ul_li">Главная</a></li>
     </ul>
     {%if user.is_authenticated %}
-        <div class="header_container_button">
-            <p>{{ user.username }}</p>
-            <a href="{% url 'logout' %}">Выход</a>
+        <div class="header_container_button" id="get_user">
+            <a v-on:click="get_username('{{user.username}}')" class="header_container_button_user" href ="{% url 'get_tabs' %}">{{ user.username }}</a>
+            <a class="header_container_button_exit" href="{% url 'logout' %}">Выход</a>
         </div>
     {% else %}
          <div class="header_container_button">
             <a href ="{% url 'login' %}" class="header_container_button_click">Войти</a>
-            <a href ="{% url 'signup' %}" class="header_container_button_click">Регистрация</a>
+            <a href ="{% url 'register' %}" class="header_container_button_click">Регистрация</a>
         </div>
     {% endif %}
 </div>
@@ -30,18 +30,42 @@
             <button type="submit" class="search-btn">Найти</button>
         </div>
     </form>
-    <div id="result">
-            {% for result in results %}
-                {% for el in result %}
-                    <div class="results">
-                        <p>Статья: <a href="{{el.1}}">{{el.0}}</a></p>
-                        <p>Доступ: {{el.2}}</p>
-                        <p>Авторы: {{el.3}}</p>
-                        <button v-on:click="add(['{{el.0}}','{{el.1}}','{{el.2}}','{{el.3}}'])">Добавить</button>
-                    </div>
-                {% endfor %}
-            {% endfor %}
+    <div class="block" id="add_article">
+    {% for el, pnt, cp in result %}
+    {% csrf_token %}
+    <div class="results">
+        <a href="{{ el.abstracturl }}"><p class="results-title">Статья: {{ el.title }}</p></a>
+        <p class="results-author">Автор(-ы): {{ el.author }}</p>
+        <p class="results-journal">Журнал: {{ el.journal }}</p>
+        {% if 'Препринт не найден' in pnt %}
+
+        {% else %}
+             <a href="{{ pnt }}"><p class="results-journal">Препринт: {{ pnt }}</p></a>
+        {% endif %}
+        {% if 'Копия не найдена' in cp %}
+
+        {% else %}
+            <a href="{{ cp }}"><p class="results-journal">Бесплатная версия: {{ cp }}</p></a>
+        {% endif %}
+    <button v-on:click="add(['{{user.id}}', '{{el.title}}','{{el.abstracturl}}','{{pnt}}','{{cp}}','{{el.author}}'])" class="search-btn">Добавить</button>
     </div>
+    {% endfor %}
+     </div>
+
+    <script src="{% static 'main/js/app.js' %}"></script>
+    <script src="{% static 'main/js/personal_acc.js' %}"></script>
+
+<!--            {% for result in results %}-->
+<!--                {% for el in result %}-->
+<!--                    <div class="results">-->
+<!--                        <p>Статья: <a href="{{el.1}}">{{el.0}}</a></p>-->
+<!--                        <p>Доступ: {{el.2}}</p>-->
+<!--                        <p>Авторы: {{el.3}}</p>-->
+<!--                        <p>Источник: {{el.4}}</p>-->
+<!--                        <button v-on:click="add(['{{el.0}}','{{el.1}}','{{el.2}}','{{el.3}}'])">Добавить</button>-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
+<!--            {% endfor %}-->
 </main>
 <script>
 new Vue({

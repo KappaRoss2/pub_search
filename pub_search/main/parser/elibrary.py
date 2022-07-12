@@ -57,6 +57,7 @@ class elibrary(ip.parser):
             Reference=reference,
             Access=access,
             Authors=authors.replace("'", ""),
+            Source="Elibrary",
         ))
 
         return self.result

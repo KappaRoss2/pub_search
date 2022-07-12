@@ -12,6 +12,7 @@ ParseResult = collections.namedtuple(
         'Reference',
         'Access',
         'Authors',
+        'Source',
 
     )
 )
@@ -21,6 +22,7 @@ HEADERS = (
     'Ссылка',
     'Доступ',
     'Авторы',
+    'Источник',
 )
 
 
@@ -52,12 +54,13 @@ class parser:
             for item in self.result:
                 writer.writerow(item)
 
-    def run(self, filename: str):
+    def run(self):
         # self.filename = filename
         self.parse_page()
 
         # self.save_results()
         self.driver.close()
+        return self.result
 
 
 

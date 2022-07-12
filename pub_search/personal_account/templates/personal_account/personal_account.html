@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block header %}
+<div class="header_container">
+    <ul class="header_container_ul">
+        <li><a href="/home" class="header_container_ul_li">Главная</a></li>
+    </ul>
+    {%if user.is_authenticated %}
+        <div class="header_container_button" id="get_user">
+            <a class="header_container_button_exit" href="{% url 'logout' %}">Выход</a>
+        </div>
+    {% else %}
+         <div class="header_container_button">
+            <a href ="{% url 'login' %}" class="header_container_button_click">Войти</a>
+            <a href ="{% url 'register' %}" class="header_container_button_click">Регистрация</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="block">
+    {% for tab in tabs %}
+        {% csrf_token %}
+        <div class="results">
+            <a href="{{ tab.source }}"><p class="results-title">Статья: {{ tab.title }}</p></a>
+            <p class="results-author">Автор(-ы): {{ tab.authors }}</p>
+            {% if 'Препринт не найден' in tab.preprint %}
+
+            {% else %}
+                 <a href="{{ tab.preprint }}"><p class="results-journal">Препринт: {{ tab.preprint }}</p></a>
+            {% endif %}
+            {% if 'Копия не найдена' in tab.copy %}
+
+            {% else %}
+                <a href="{{ tab.copy }}"><p class="results-journal">Копия: {{ tab.copy }}</p></a>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+</main>
+{% endblock %}

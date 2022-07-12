@@ -3,6 +3,10 @@ body {
 
 }
 
+a {
+    text-decoration: none;
+}
+
 
 main {
     display: flex;
@@ -13,15 +17,207 @@ main {
     background-color: #dee2e6;
 }
 
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+}
+
 .search-box {
     display: flex;
     background-color: #2f3640;
     height: 70px;
     border-radius: 40px;
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 10px;
 }
 
+.wrap-login100 {
+    width: 500px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    -moz-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    -o-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+    -ms-box-shadow: 0 3px 20px 0 rgba(0,0,0,.1);
+}
+
+.login100-form {
+    width: 100%;
+    position: relative;
+}
+
+.p-r-55 {
+    padding-right: 55px;
+}
+
+.p-l-55 {
+    padding-left: 55px;
+}
+
+.p-t-178 {
+    padding-top: 178px;
+}
+
+.login100-form-title {
+    font-family: JosefinSans-Bold;
+    font-size: 30px;
+    color: #fff;
+    line-height: 1.2;
+    text-align: center;
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #57b846;
+    padding-top: 50px;
+    padding-bottom: 39px;
+}
+
+.validate-input {
+    position: relative;
+}
+
+.wrap-input100 {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 27px;
+    position: relative;
+    z-index: 1;
+}
+
+.m-b-16 {
+    margin-bottom: 16px;
+}
+
+.input100 {
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #1b3815;
+    line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: #ebebeb;
+    border-radius: 27px;
+    padding: 0 35px;
+}
+
+.form-input {
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #1b3815;
+    line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: #ebebeb;
+    border-radius: 27px;
+    border-width: 0px;
+    padding: 0 35px;
+}
+
+#id_username {
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #1b3815;
+    line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: #ebebeb;
+    border-radius: 27px;
+    border-width: 0px;
+    padding: 0 35px;
+    placeholder: "username";
+}
+
+#id_password {
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #1b3815;
+    line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: #ebebeb;
+    border-radius: 27px;
+    border-width: 0px;
+    padding: 0 35px;
+}
+
+label[for="id_username"] {
+  display: none;
+}
+
+label[for="id_password"] {
+  display: none;
+}
+
+.focus-input100 {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 31px;
+    background-color: #ebebeb;
+    pointer-events: none;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+
+.container-login100-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.login100-form-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    background-color: #57b846;
+    border-radius: 25px;
+    border-width: 0px;
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
 
 .search-btn {
   text-decoration: none;
@@ -77,15 +273,39 @@ main {
 }
 
 .results {
-    background-color: #ddd;
-    width: 70%;
-    margin: auto;
-    padding: 10px;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 3%;
+    background-color: #37474F;
+    padding: 50px 50px 30px;
+    margin: 40px 0 15px 0;
+    position: relative;
+    border-radius: 16px;
+}
+
+.results-title {
+
+    color: #eee;
+    font-family: "Lucida Sans Unicode", sans-serif;
+    font-weight: 900;
+}
+
+.results-author {
+
+    color: #eee;
+    font-family: "Century Gothic", sans-serif;
+    font-style: oblique;
+    font-weight: 300;
+}
+
+.results-journal{
+
+    color: #eee;
+    font-family: "Rubik", sans-serif;
+    font-style: inherit;
+    font-weight: 300;
+}
+
+.block {
+    width: 50%;
 }
 
 .header_container_ul {
@@ -126,8 +346,27 @@ a:hover {
 }
 
 .header_container_button {
+    display: flex;
+    justify-content: flex-end;
     text-align: right;
+
 }
+
+.header_container_button_user {
+
+    padding-right: 10%;
+    font-family: JosefinSans-Bold;
+    font-size: 30px;
+
+}
+
+a.header_container_button_exit{
+    font-family: JosefinSans-Bold;
+    font-size: 30px;
+    text-decoration: none;
+    color: #212529;
+}
+
 
 .header_container_button_click {
       text-decoration: none;
@@ -185,6 +424,43 @@ a:hover {
     display: flex;
     justify-content: center;
 
+}
+
+.text-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bot-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bot-panel-button{
+    width:102%;
+}
+
+h1.text-input {
+    padding: 30px;
+}
+
+.sign-in {
+    margin-bottom: 30px;
+}
+
+.text-input-place {
+    clear:both;
+    text-align:right;
+}
+
+label {
+    float: left;
+    padding-right: 10px;
 }
 
 

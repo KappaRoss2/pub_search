@@ -1,6 +1,7 @@
 import selenium.webdriver.remote.webelement as WebElement
 from ..parser import init_parser as ip
 from selenium.webdriver.common.by import By
+import request
 
 
 class springer(ip.parser):
@@ -35,6 +36,7 @@ class springer(ip.parser):
                 Reference = reference,
                 Access = access,
                 Authors = authors.replace("'", ""),
+                Source="Springer",
             ))
 
             return self.result
